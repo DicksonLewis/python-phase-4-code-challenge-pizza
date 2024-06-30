@@ -26,20 +26,20 @@ def index():
     return "<h1>Code challenge</h1>"
 
 @app.route('/restaurants', methods=['GET'])
-def get_restaurants():  
+def restaurant():
     restaurants = []
     for restaurant in Restaurant.query.all():
-        restaurant_dict = {
+        restaurant_dict={
             'id': restaurant.id,
             'name': restaurant.name,
             'address': restaurant.address
         }
         restaurants.append(restaurant_dict)
-    response = make_response(
-        jsonify(restaurants),
-        200
-    )
-    return response
+        response = make_response(
+            jsonify(restaurants),
+            200
+        )
+        return response
 
     
 @app.route('/restaurants/<int:id>', methods=['GET'])  
@@ -109,7 +109,6 @@ def get_pizzas():
     )
     return response
 
-@app.route('/restaurant_pizza', methods=['POST'])
 @app.route('/restaurant_pizza', methods=['POST'])
 def create_restaurant_pizza():
     try:
